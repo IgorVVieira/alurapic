@@ -5,6 +5,7 @@ import VueAxios from 'vue-axios'
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from './routes'
 import { transform } from './directives/Transform'
+import VeeValidate from 'vee-validate'
 
 const router = createRouter({
   routes,
@@ -17,4 +18,5 @@ createApp(App)
   .directive('transform', transform)
   .use(VueAxios, axios)
   .use(router)
+  .use(VeeValidate)
   .mount('#app')
