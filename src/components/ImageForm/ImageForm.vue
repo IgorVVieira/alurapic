@@ -2,27 +2,29 @@
   <div>
     <h1 class="centered">Cadastro</h1>
     <h2 class="centered">{{ foto.titulo }}</h2>
-    <form @submit.prevent="submit">
+    <Form @submit="submit">
       <div class="form-control">
-        <label for="titulo">TÍTULO</label>
-        <input
+        <label for="titulo">Título</label>
+        <Field
           id="titulo"
           class="form-input"
-          v-model.lazy="foto.titulo"
-          autocomplete="off"
-          required
+          v-model="foto.titulo"
+          name="titulo"
+          rules="required|min:3|max:20"
         />
+        <ErrorMessage name="titulo" />
       </div>
 
       <div class="form-control">
-        <label for="url">URL</label>
-        <input
+        <label for="url">Url</label>
+        <Field
           id="url"
-          v-model.lazy="foto.url"
-          autocomplete="off"
-          required
+          name="url"
+          v-model="foto.url"
           class="form-input"
+          rules="required"
         />
+        <ErrorMessage name="url" />
         <image-responsive
           v-show="foto.url"
           :url="foto.url"
@@ -31,7 +33,7 @@
       </div>
 
       <div class="form-control">
-        <label for="descricao">DESCRIÇÃO</label>
+        <label for="descricao">Descrição</label>
         <textarea
           id="descricao"
           v-model="foto.descricao"
@@ -47,7 +49,7 @@
           <Button text="VOLTAR" type="button" />
         </router-link>
       </div>
-    </form>
+    </Form>
   </div>
 </template>
 
@@ -55,11 +57,15 @@
 import ImageResponsive from "../shared/ImageResponsive/ImageResponsive.vue";
 import Button from "../shared/Button/ButtonComponent.vue";
 import Photo from "../../domain/Photo";
+import { Form, Field, ErrorMessage } from "vee-validate";
 
 export default {
   components: {
     "image-responsive": ImageResponsive,
     Button,
+    Form,
+    Field,
+    ErrorMessage,
   },
   data() {
     return {
@@ -151,5 +157,10 @@ export default {
 
 .centered {
   text-align: center;
+}
+
+span[role="alert"] {
+  color: red;
+  font-size: 14px;
 }
 </style>
