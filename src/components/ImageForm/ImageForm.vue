@@ -2,7 +2,7 @@
   <div>
     <h1 class="centered">Cadastro</h1>
     <h2 class="centered">{{ foto.titulo }}</h2>
-    <form>
+    <form @submit.prevent="submit">
       <div class="form-control">
         <label for="titulo">TÍTULO</label>
         <input
@@ -41,13 +41,8 @@
       </div>
 
       <div class="centered">
-        <Button
-          text="ALTERAR"
-          v-if="id"
-          type="submit"
-          @click.prevent="update"
-        />
-        <Button text="GRAVAR" v-else type="submit" @click.prevent="store" />
+        <Button text="ALTERAR" v-if="id" type="submit" />
+        <Button text="GRAVAR" v-else type="submit" />
         <router-link :to="{ name: 'Home' }">
           <Button text="VOLTAR" type="button" />
         </router-link>
@@ -78,8 +73,16 @@ export default {
     }
   },
   methods: {
+    async submit() {
+      if (this.foto._id) {
+        await this.update();
+      } else {
+        await this.store();
+      }
+    },
     async store() {
       try {
+        delete this.foto._id;
         await this.axios.post("v1/fotos", this.foto);
         alert("Foto cadastrada com sucesso!");
       } catch (error) {

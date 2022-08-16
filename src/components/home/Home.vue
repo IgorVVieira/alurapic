@@ -9,7 +9,7 @@
       v-model="filter"
       placeholder="Filtre pelo título..."
     />
-    <ul class="photo-list" v-if="filteredPhotos.lenght">
+    <ul class="photo-list" v-if="filteredPhotos.length">
       <li class="photo-item" v-for="foto of filteredPhotos" :key="foto._id">
         <PanelImage :foto="foto" @removePhoto="removePhoto" />
       </li>

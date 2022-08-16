@@ -5,7 +5,7 @@ import VueAxios from 'vue-axios'
 import { createRouter, createWebHistory } from 'vue-router'
 import { routes } from './routes'
 import { transform } from './directives/Transform'
-import VeeValidate from 'vee-validate'
+import { ValidationProvider } from 'vee-validate'
 
 const router = createRouter({
   routes,
@@ -14,9 +14,11 @@ const router = createRouter({
 
 axios.defaults.baseURL = 'http://localhost:3000/'
 
-createApp(App)
-  .directive('transform', transform)
-  .use(VueAxios, axios)
+const app = createApp(App)
+app.component('ValidationProvider', ValidationProvider)
+
+app.directive('transform', transform)
+
+app.use(VueAxios, axios)
   .use(router)
-  .use(VeeValidate)
   .mount('#app')
