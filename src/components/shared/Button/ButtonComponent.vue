@@ -40,7 +40,7 @@ export default {
   methods: {
     action() {
       if (this.confirm) {
-        if (confirm('Confimar operação?')) {
+        if (confirm("Confimar operação?")) {
           this.$emit("activeButton");
         }
         return;
@@ -51,22 +51,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.button {
-  display: inline-block;
-  padding: 10px;
-  border-radius: 3px;
-  margin: 10px;
-  font-size: 1.2em;
-}
-
-.danger {
-  background: firebrick;
-  color: white;
-}
-
-.default {
-  background: darkcyan;
-  color: white;
-}
+<style scoped lang="sass">
+@import './button.scss'
 </style>

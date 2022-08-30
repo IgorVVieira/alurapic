@@ -7,10 +7,10 @@
         <label for="titulo">Título</label>
         <Field
           id="titulo"
-          class="form-input"
+          class="input-group"
           v-model="foto.titulo"
           name="titulo"
-          rules="required|min:3|max:20"
+          rules="required"
         />
         <ErrorMessage name="titulo" />
       </div>
@@ -20,8 +20,8 @@
         <Field
           id="url"
           name="url"
-          v-model="foto.url"
-          class="form-input"
+          v-model.lazy="foto.url"
+          class="input-group"
           rules="required"
         />
         <ErrorMessage name="url" />
@@ -34,12 +34,15 @@
 
       <div class="form-control">
         <label for="descricao">Descrição</label>
-        <textarea
+        <Field
+          as="textarea"
           id="descricao"
+          name="descricao"
+          class="input-group"
           v-model="foto.descricao"
-          autocomplete="off"
-          required
-        ></textarea>
+          rules="required"
+        />
+        <ErrorMessage name="descricao" />
       </div>
 
       <div class="centered">
@@ -118,17 +121,17 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 .centered {
   text-align: center;
 }
 .form-control {
   font-size: 1.2em;
   margin-bottom: 20px;
-}
-.form-control label {
-  display: block;
-  font-weight: bold;
+  label {
+    display: block;
+    font-weight: bold;
+  }
 }
 
 .form-control label + input,
