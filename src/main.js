@@ -10,6 +10,8 @@ import { required, email, min } from '@vee-validate/rules';
 import { localize } from '@vee-validate/i18n';
 import ptBr from '@vee-validate/i18n/dist/locale/pt_PT.json';
 
+import 'bootstrap/dist/css/bootstrap.css'
+
 const router = createRouter({
   routes,
   history: createWebHistory(),
